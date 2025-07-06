@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>父親メールアプリ</title>
+  <style>
+    body {  font-size: 2.2em; font-family: sans-serif; padding: 20px; background: linear-gradient(to bottom, #ffffff, #87cefa); background-attachment: fixed; }
+    .tab-buttons button {font-size: 1.2em; padding: 0.2em 0.2em; margin: 0.2em; border-radius: 8px; border: none;　background-color: 	#77dd77 cursor: pointer;}
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .mailbox { margin-bottom: 60px; }
+    .mail { border: 3px solid #ccc; padding: 30px; margin-bottom: 15px; background: white; }
+    .popup, .confirm-dialog { display: none;  position: fixed; top: 30%; padding: 20px;   font-size: 1.7em;background: #fff8dc; border: 4px solid #f4a460; z-index: 1000; }
+    .popup.active, .confirm-dialog.active { display: block; }
+    input, textarea { width: 100%; margin: 15px 0; font-size: 1.5em;}
+    button.send { padding: 15px 10px; font-size: 1.5em;}
+    .confirm-dialog button { font-size: 1em;  padding: 0.2em 0.2em;  margin: 0.5 0.5em;}
+    .popup button { font-size: 1em;  padding: 0.2em 0.2em;  margin: 0.5 0.5em;}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+  </style>
+</head>
+<body>
+  <h1 style="font-family: 'Noto Serif JP', serif; font-size: 1.2em; background: linear-gradient(to right, #fdf6e3, #f5deb3); border-left: 6px solid #d4af37; padding: 1em; color: #3b3b3b; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); border-radius: 8px;">
+  <strong>父親メールアプリ</strong>
+</h1>
+  <p style="font-family: 'Georgia', 'Times New Roman', serif; font-size: 1.2em; color: #2c3e50; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); border-bottom: 3px solid #d4af37; padding-bottom: 0.2em; margin-bottom: 0.5em;">
+  <strong>あなたのメールアドレス：</strong> user.otousan7890@mys.mail.com
+</p>
+
+
+  <div class="tab-buttons">
+    <button onclick="showTab('send')">✉️ メール送信</button>
+    <button onclick="showTab('inbox')">📥 受信履歴</button>
+    <button onclick="showTab('outbox')">📤 送信履歴</button>
+  </div>
+
+  <div id="send" class="tab-content active">
+    <div class="mailbox">
+      <h2>✉️ メール送信</h2>
+      <input type="text" id="to" placeholder="宛先（To）">
+      <input type="text" id="subject" placeholder="件名">
+      <textarea id="body" rows="4" placeholder="本文"></textarea>
+      <button class="send" onclick="confirmSend()">送信</button>
+    </div>
+  </div>
+
+  <div id="inbox" class="tab-content">
+    <div class="mailbox" id="inbox-box">
+      <h2>📥 受信メール</h2>
+      <div class="mail">From: fukomama@mys.mail.com<br>件名:最高に盛り上がりましたね！<br>内容: 今日の試合良かったわ！<br>
+今日の試合、 <strong>うちのふうこ、前半にゴール決めたの！</strong><br>
+久しぶりの公式戦だったから、本人も気合い入ってたみたいで。<br>
+試合前にスタジアムのお隣のフットサルコートで走り回っていたのよ～！
+<br><small>受信日時: 2025/9/20 23:10:42</small></div> 
+      <div class="mail">From: okimama@mys.mail.com<br>件名: いつも<strong>おきよ</strong>がお世話になってます！<br>内容: こんばんは、今日の試合の感想。<br>
+今日の試合、 <strong>ふうこちゃんが決めた直後に、娘の「おきよ」も勢いでゴール決めました！</strong><br>
+あの2人の連続得点、すごくリズムよかったですね。<br><small>受信日時: 2025/9/20 22:05:10</small></div>
+      <div class="mail">From: ikumi@mys.mail.com<br>件名: お知らせ：<strong>いくみ</strong>がやりました！<br>内容:今日の<strong>いくみ</strong>、前半終了間際に決めた1点に本人も満足してました。<br>
+そのあとの、 <strong>はつめちゃん</strong>のゴールも素敵でしたね！初ゴールだそうです♪<br><small>受信日時: 2025/9/20 21:01:00</small></div>
+      <div class="mail">From: hatsumama@mys.mail.com<br>件名: お疲れ様です！<br>内容:本日の試合はみんな頑張った！<br>
+<strong>はつめ</strong>、今日は人生初のゴールを取れて本人もニコニコでした。<br>
+ <strong>「この1点でふうこちゃんがやる気出して、ゴールしてくれたらいいな〜」</strong>って、ゴール直後に言ってたみたいなんです。<br>
+結果的に本当にその通りになって、2人で笑ってました。<br>仲良しですね〜♪<br><small>受信日時: 2025/9/20 20:00:00</small></div>
+      <div class="mail">From: yoshimama@mys.mail.com<br>件名: <strong>よしき</strong>ママです！<br>内容: 今日は<strong>よしき</strong>、 <strong>チーム最後の5点目も綺麗にアシストしてくれました♪</strong><br>
+今期の得点王になれたことも嬉しいけど、最後までチームプレーできたことに本人も誇り感じてるようです。<br>
+2面あるからどちらかは空いているだろうって、試合後も近くのフットサルコートに練習にいちゃいましたよ（笑）<br>
+<small>受信日時: 2025/6/20 19:30:00</small></div>
+      <div class="mail">From: misamama@mys.mail.com<br>件名: みさく母</strong>です！<br>内容: <strong>みさく</strong>も頑張った！ <strong>みさくはゴールキーパーとして</strong>一点も許さずにすごかったです！<br>
+ゴールの機会はなかったけど、セーブする方がカッコいいでしょ？って言ってました！<br>
+<small>受信日時: 2025/6/20 19:30:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>さとう</strong>の取りすぎの防止！ <br>内容: 今月の無料体験イベントの情報<br>薄味でも美味しい健康料理会！<br><small>受信日時: 2024/8/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>そんな</strong>バカな！ <br>内容: 今月の無料体験イベントの情報<br>サンゴのなかを黒から赤交互に進もう<br><small>受信日時: 2024/4/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>れべる</strong>アップ練習会！ <br>内容: 今月の無料体験イベントの情報<br>「おもいで」を送れ！<br><small>受信日時: 2024/3/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>めいせんしゅ</strong>招待！ <br>内容: 今月の無料体験イベントの情報<br>有名サッカー選手をご招待！<br><small>受信日時: 2024/2/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>さきほこれ</strong>！桜祭り！ <br>内容: 今月の無料体験イベントの情報<br>花に含まれる香りを感じよう！<br><small>受信日時: 2024/1/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>みつバチ</strong>のお世話大会！　<br>内容: 今月の無料体験イベントの情報<br>蜂蜜の間を味わおう！<br><small>受信日時: 2023/12/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>あの有名人</strong>を出会える？ <br>内容: 今月の無料体験イベントの情報<br>ビックマウスに習い、ボールを追いかけろ！<br><small>受信日時: 2023/11/20 18:00:00</small></div>   
+      <div class="mail">From: info@events.jp<br>件名: <strong>かずの子</strong>ってどうやって作るの？ <br>内容: 今月の無料体験イベントの情報<br>たべられないパンってナ～ンだ？<br><small>受信日時: 2023/10/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>シかがソリ</strong>を引く夏祭り！ <br>内容: 今月の無料体験イベントの情報<br>残暑を吹き飛ばす！<br><small>受信日時: 2023/9/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>海の生態</strong>を守ろう！ <br>内容: 今月の無料体験イベントの情報<br>水泳訓練はケガの可能性が低い<br><small>受信日時: 2023/8/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>あト少し</strong>で夏が来る！ <br>内容: 今月の無料体験イベントの情報<br>さくらをあじわおう<br><small>受信日時: 2023/7/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>そーめん</strong>流してみんかね？ <br>内容: 今月の無料体験イベントの情報<br>ソーメンをながせ！<br><small>受信日時: 2023/2/20 18:00:00</small></div>   
+      <div class="mail">From: info@events.jp<br>件名: <strong>ココ</strong>が味噌？味噌にゅうり大食い！ <br>内容: 今月の無料体験イベントの情報<br>健康には野菜も大事！<br><small>受信日時: 2023/1/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>したばかり</strong>見ていると走れない！ <br>内容: 今月の無料体験イベントの情報<br>目の前の相手を見てドリブルを！<br><small>受信日時: 2022/12/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>きれものの</strong>戦術とは？ <br>内容: 今月の無料体験イベントの情報<br>思いがけない所に戦うヒントがある！<br><small>受信日時: 2022/11/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>たかい</strong>ジャンプのコツ <br>内容: 今月の無料体験イベントの情報<br>背が低くても戦える！<br><small>受信日時: 2022/10/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>読書も立派な</strong>トレーニング <br>内容: 今月の無料体験イベントの情報<br>思考トレーニング！<br><small>受信日時: 2022/9/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>右にボール左に手袋</strong> <br>内容: 今月の無料体験イベントの情報<br>日常的にボールをもっていよう！<br><small>受信日時: 2022/8/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>！元気な</strong>キャプテンになるには？ <br>内容: 今月の無料体験イベントの情報<br>背中で魅せてひっぱろう！<br><small>受信日時: 2022/7/20 18:00:00</small></div>
+      <div class="mail">From: info@events.jp<br>件名: <strong>相手と競いあう</strong>チーム作り！ <br>内容: 今月の無料体験イベントの情報<br>こいのぼりなどもあります<br><small>受信日時: 2022/6/20 18:00:00</small></div>   
+      
+
+      
+    </div>
+    </div>
+  </div>
+
+  <div id="outbox" class="tab-content">
+    <div class="mailbox" id="outbox-box">
+      <h2>📤 送信メール</h2>
+      <div class="mail">To: contact@event-newsletter.net<br>件名: 質問：開催日時の変更について<br>内容: イベント開始時間に関する問い合わせです。<br><small>送信日時: 2025/6/20 23:12:45</small></div>
+      <div class="mail">To: office@myfitness.net<br>件名: 予約のキャンセル依頼<br>内容: 予定が重なったため、予約をキャンセルしたいです。<br><small>送信日時: 2025/6/20 22:02:31</small></div>
+      <div class="mail">To: info@events.jp<br>件名: 体験イベント参加希望<br>内容: 家族3名で参加を希望します。<br><small>送信日時: 2025/6/20 21:10:15</small></div>
+      <div class="mail">To: team@newsletter.jp<br>件名: 購読希望<br>内容: ニュースレターを購読したいです。<br><small>送信日時: 2025/6/20 20:05:45</small></div>
+      <div class="mail">To: inquiry@support.co.jp<br>件名: 登録内容の確認<br>内容: 自分の登録したメールアドレスを教えてください。<br><small>送信日時: 2025/6/20 19:00:00</small></div>
+    </div>
+  </div>
+
+  <div id="specialPopup" class="popup">
+    <strong>メールが受信されました！</strong><br>
+    <button onclick="closePopup()">閉じる</button>
+  </div>
+
+    <div id="ngPopup" class="popup">
+    <strong>５人目の名前が違うようです。</strong><br>
+    <button onclick="closengPopup()">閉じる</button>
+  </div>
+  
+  <div id="confirmPopup" class="confirm-dialog">
+    <p>この内容で送信しますか？</p>
+    <button onclick="sendMail(true)">はい</button>
+    <button onclick="closeConfirm()">いいえ</button>
+  </div>
+
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function confirmSend() {
+      document.getElementById("confirmPopup").classList.add("active");
+    }
+
+    function closeConfirm() {
+      document.getElementById("confirmPopup").classList.remove("active");
+    }
+
+    function sendMail(confirmed) {
+      if (!confirmed) return;
+      closeConfirm();
+
+      const now = new Date();
+      const timestamp = now.toLocaleString('ja-JP', { hour12: false });
+      const to = document.getElementById("to").value.trim();
+      const subject = document.getElementById("subject").value;
+      const body = document.getElementById("body").value;
+
+      const outbox = document.getElementById('outbox-box');
+      const newMail = document.createElement('div');
+      newMail.className = 'mail';
+      newMail.innerHTML = `To: ${to}<br>件名: ${subject}<br>内容: ${body}<br><small>送信日時: ${timestamp}</small>`;
+      const heading = outbox.querySelector('h2');
+　　　 outbox.insertBefore(newMail, heading.nextSibling);
+
+      if (to.toLowerCase() === "school@inac-kobe.com") {
+        document.getElementById("specialPopup").classList.add("active");
+        const inbox = document.getElementById('inbox-box');
+        const confirmMail = document.createElement('div');
+        confirmMail.className = 'mail';
+        confirmMail.innerHTML = `From: school@inac-kobe.com<br>件名: サッカースクール仮申し込み完了のお知らせ<br>内容: このたびはサッカースクールへの仮申し込みありがとうございます。<br>『再出発』とLINEに入力してください<br>
+        <br><strong>※実際には、サッカースクールにメールは送信されておりません。</strong>本メールは謎解き公演上の演出でございます。<br>謎解き公演とは関係なく、サッカースクールにご興味がございましたら、各サッカースクールの公式サイトより個別にご対応くださいませ。<br>--<br>本謎解き公演 制作担当者<br><small>受信日時: ${timestamp}</small>`;
+        const heading = inbox.querySelector('h2');
+inbox.insertBefore(confirmMail, heading.nextSibling);
+      }
+      else if (to.toLowerCase() === "fukomama@mys.mail.com")  {
+        document.getElementById("specialPopup").classList.add("active");
+        const inbox = document.getElementById('inbox-box');
+        const confirmMail = document.createElement('div');
+  confirmMail.className = 'mail';
+  confirmMail.innerHTML = `From: fukomama@mys.mail.com<br>件名: ふうこママです。<br>内容: お久しぶりです。ふうこも久しぶりだと喜んでおりました！<br>
+  <br>娘さまにも<strong>「よろこんだ」</strong>とお伝えください。<br><small>受信日時: ${timestamp}</small>`;
+  const heading = inbox.querySelector('h2');
+  inbox.insertBefore(confirmMail, heading.nextSibling);
+}
+     else if (to.toLowerCase() === "okimama@mys.mail.com" || to.toLowerCase() === "hatsumama@mys.mail.com" || to.toLowerCase() === "yoshimama@mys.mail.com" || to.toLowerCase() === "misamama@mys.mail.com" || to.toLowerCase() === "ikumi@mys.mail.co") {
+        document.getElementById("ngPopup").classList.add("active");
+}
+
+    
+      // 入力欄をリセット
+      document.getElementById("to").value = "";
+      document.getElementById("subject").value = "";
+      document.getElementById("body").value = "";
+    }
+
+    function closePopup() {
+      document.getElementById("specialPopup").classList.remove("active");
+    }
+    function closengPopup() {
+      document.getElementById("ngPopup").classList.remove("active");
+    }
+  </script>
+</body>
+</html>
