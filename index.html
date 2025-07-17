@@ -50,17 +50,17 @@
   <div id="inbox" class="tab-content">
     <div class="mailbox" id="inbox-box">
       <h2>📥 受信メール</h2>
-      <div class="mail">From: fukomama@mys.mail.com<br>件名:最高に盛り上がりましたね！<br>内容: 今日の試合良かったわ！<br>
+      <div class="mail">From: fukinomama@mys.mail.com<br>件名:最高に盛り上がりましたね！<br>内容: 今日の試合良かったわ！<br>
 今日の試合、 <strong>うちのふきの、前半にゴール決めたの！</strong><br>
 久しぶりの公式戦だったから、本人も気合い入ってたみたいで。<br>
 試合前にスタジアムのお隣のフットサルコートで走り回っていたのよ～！
 <br><small>受信日時: 2025/9/20 23:10:42</small></div> 
-      <div class="mail">From: okimama@mys.mail.com<br>件名: いつも<strong>うしお</strong>がお世話になってます！<br>内容: こんばんは、今日の試合の感想。<br>
+      <div class="mail">From: ushimama@mys.mail.com<br>件名: いつも<strong>うしお</strong>がお世話になってます！<br>内容: こんばんは、今日の試合の感想。<br>
 今日の試合、 <strong>ふきのちゃんが決めた直後に、娘の「うしお」も勢いでゴール決めました！</strong><br>
 あの2人の連続得点、すごくリズムよかったですね。<br><small>受信日時: 2025/9/20 22:05:10</small></div>
-      <div class="mail">From: ikumi@mys.mail.com<br>件名: お知らせ：<strong>いくよ</strong>がやりました！<br>内容:今日の<strong>いくよ</strong>、前半終了間際に決めた1点に本人も満足してました。<br>
+      <div class="mail">From: ikuyo@mys.mail.com<br>件名: お知らせ：<strong>いくよ</strong>がやりました！<br>内容:今日の<strong>いくよ</strong>、前半終了間際に決めた1点に本人も満足してました。<br>
 そのあとの、 <strong>てつこちゃん</strong>のゴールも素敵でしたね！初ゴールだそうです♪<br><small>受信日時: 2025/9/20 21:01:00</small></div>
-      <div class="mail">From: hatsumama@mys.mail.com<br>件名: お疲れ様です！<br>内容:本日の試合はみんな頑張った！<br>
+      <div class="mail">From: tetsumama@mys.mail.com<br>件名: お疲れ様です！<br>内容:本日の試合はみんな頑張った！<br>
 <strong>てつこ</strong>、今日は人生初のゴールを取れて本人もニコニコでした。<br>
  <strong>「この1点でふきのちゃんがやる気出して、ゴールしてくれたらいいな〜」</strong>って、ゴール直後に言ってたみたいなんです。<br>
 結果的に本当にその通りになって、2人で笑ってました。<br>仲良しですね〜♪<br><small>受信日時: 2025/9/20 20:00:00</small></div>
@@ -166,17 +166,17 @@
         const heading = inbox.querySelector('h2');
 inbox.insertBefore(confirmMail, heading.nextSibling);
       }
-      else if (to.toLowerCase() === "fukomama@mys.mail.com")  {
+      else if (to.toLowerCase() === "fukinomama@mys.mail.com")  {
         document.getElementById("specialPopup").classList.add("active");
         const inbox = document.getElementById('inbox-box');
         const confirmMail = document.createElement('div');
   confirmMail.className = 'mail';
-  confirmMail.innerHTML = `From: fukomama@mys.mail.com<br>件名: ふきのママです。<br>内容: お久しぶりです。ふきのも久しぶりだと喜んでおりました！<br>
+  confirmMail.innerHTML = `From: fukinomama@mys.mail.com<br>件名: ふきのママです。<br>内容: お久しぶりです。ふきのも久しぶりだと喜んでおりました！<br>
   <br>娘さまにも<strong>「よろこんだ」</strong>とお伝えください。<br><small>受信日時: ${timestamp}</small>`;
   const heading = inbox.querySelector('h2');
   inbox.insertBefore(confirmMail, heading.nextSibling);
 }
-     else if (to.toLowerCase() === "okimama@mys.mail.com" || to.toLowerCase() === "hatsumama@mys.mail.com" || to.toLowerCase() === "yoshimama@mys.mail.com" || to.toLowerCase() === "misamama@mys.mail.com" || to.toLowerCase() === "ikumi@mys.mail.co") {
+     else if (to.toLowerCase() === "ushimama@mys.mail.com" || to.toLowerCase() === "tetsumama@mys.mail.com" || to.toLowerCase() === "yoshimama@mys.mail.com" || to.toLowerCase() === "misamama@mys.mail.com" || to.toLowerCase() === "ikumi@mys.mail.co") {
         document.getElementById("ngPopup").classList.add("active");
 }
 
