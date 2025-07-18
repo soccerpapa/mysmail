@@ -156,25 +156,38 @@
 　　　 outbox.insertBefore(newMail, heading.nextSibling);
 
       if (to.toLowerCase() === "school@inac-kobe.com") {
-        document.getElementById("specialPopup").classList.add("active");
-        const inbox = document.getElementById('inbox-box');
-        const confirmMail = document.createElement('div');
-        confirmMail.className = 'mail';
-        confirmMail.innerHTML = `From: school@inac-kobe.com<br>件名: サッカースクール仮申し込み完了のお知らせ<br>内容: このたびはサッカースクールへの仮申し込みありがとうございます。<br>娘さまには</strong>『再出発』</strong>とLINEでお伝えください<br>
-        <br><strong>※実際には、サッカースクールにメールは送信されておりません。</strong>本メールは謎解き公演上の演出でございます。<br>謎解き公演とは関係なく、サッカースクールにご興味がございましたら、各サッカースクールの公式サイトより個別にご対応くださいませ。<br>--<br>本謎解き公演 制作担当者<br><small>受信日時: ${timestamp}</small>`;
-        const heading = inbox.querySelector('h2');
-inbox.insertBefore(confirmMail, heading.nextSibling);
-      }
-      else if (to.toLowerCase() === "fukinomama@mys.mail.com")  {
-        document.getElementById("specialPopup").classList.add("active");
-        const inbox = document.getElementById('inbox-box');
-        const confirmMail = document.createElement('div');
-  confirmMail.className = 'mail';
-  confirmMail.innerHTML = `From: fukinomama@mys.mail.com<br>件名: ふきのママです。<br>内容: お久しぶりです。ご連絡いただき、ふきのも久しぶりだと喜んでおりました！<br>
-  今日は都合がつかず、スタジアムには来ていませんが、今度予定を合わせて観戦しましょう！<br>
-  <br>娘さまにも<strong>「よろこんだ」</strong>とお伝えください。<br><small>受信日時: ${timestamp}</small>`;
-  const heading = inbox.querySelector('h2');
-  inbox.insertBefore(confirmMail, heading.nextSibling);
+      setTimeout(() => {
+      document.getElementById("specialPopup").classList.add("active");
+      const inbox = document.getElementById('inbox-box');
+      const confirmMail = document.createElement('div');
+      const timestamp = new Date().toLocaleString(); // ← 追加
+      confirmMail.className = 'mail';
+     confirmMail.innerHTML = `From: school@inac-kobe.com<br>件名: サッカースクール仮申し込み完了のお知らせ<br>内容: このたびはサッカースクールへの仮申し込みありがとうございます。<br>娘さまには<strong>『再出発』</strong>とLINEでお伝えください<br><br><strong>※実際には、サッカースクールにメールは送信されておりません。</strong>本メールは謎解き公演上の演出でございます。<br>謎解き公演とは関係なく、サッカースクールにご興味がございましたら、各サッカースクールの公式サイトより個別にご対応くださいませ。<br>--<br>本謎解き公演 制作担当者<br><small>受信日時: ${timestamp}</small>`;
+      
+      const heading = inbox.querySelector('h2');
+      inbox.insertBefore(confirmMail, heading.nextSibling);
+         }, 3000); // ← 3秒後に実行
+        
+      else if (to.toLowerCase() === "fukinomama@mys.mail.com") {
+  setTimeout(() => {
+    document.getElementById("specialPopup").classList.add("active");
+
+    const inbox = document.getElementById('inbox-box');
+    const confirmMail = document.createElement('div');
+    confirmMail.className = 'mail';
+
+    const timestamp = new Date().toLocaleString(); // ← 追加（未定義対策）
+
+    confirmMail.innerHTML = `From: fukinomama@mys.mail.com<br>
+      件名: ふきのママです。<br>
+      内容: お久しぶりです。ご連絡いただき、ふきのも久しぶりだと喜んでおりました！<br>
+      今日は都合がつかず、スタジアムには来ていませんが、今度予定を合わせて観戦しましょう！<br><br>
+      娘さまにも<strong>「よろこんだ」</strong>とお伝えください。<br>
+      <small>受信日時: ${timestamp}</small>`;
+
+    const heading = inbox.querySelector('h2');
+    inbox.insertBefore(confirmMail, heading.nextSibling);
+  }, 3000); // ← 3秒後に実行
 }
      else if (to.toLowerCase() === "ushimama@mys.mail.com" || to.toLowerCase() === "tetsumama@mys.mail.com" || to.toLowerCase() === "yoshimama@mys.mail.com" || to.toLowerCase() === "misamama@mys.mail.com" || to.toLowerCase() === "ikumi@mys.mail.co") {
         document.getElementById("ngPopup").classList.add("active");
