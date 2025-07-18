@@ -170,7 +170,8 @@ inbox.insertBefore(confirmMail, heading.nextSibling);
         const inbox = document.getElementById('inbox-box');
         const confirmMail = document.createElement('div');
   confirmMail.className = 'mail';
-  confirmMail.innerHTML = `From: fukinomama@mys.mail.com<br>件名: ふきのママです。<br>内容: お久しぶりです。ふきのも久しぶりだと喜んでおりました！<br>
+  confirmMail.innerHTML = `From: fukinomama@mys.mail.com<br>件名: ふきのママです。<br>内容: お久しぶりです。ご連絡いただき、ふきのも久しぶりだと喜んでおりました！<br>
+  今日は都合がつかず、スタジアムには来ていませんが、今度予定を合わせて観戦しましょう！<br>
   <br>娘さまにも<strong>「よろこんだ」</strong>とお伝えください。<br><small>受信日時: ${timestamp}</small>`;
   const heading = inbox.querySelector('h2');
   inbox.insertBefore(confirmMail, heading.nextSibling);
