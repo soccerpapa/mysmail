@@ -160,7 +160,7 @@
         const inbox = document.getElementById('inbox-box');
         const confirmMail = document.createElement('div');
         confirmMail.className = 'mail';
-        confirmMail.innerHTML = `From: school@inac-kobe.com<br>件名: サッカースクール仮申し込み完了のお知らせ<br>内容: このたびはサッカースクールへの仮申し込みありがとうございます。<br>『再出発』とLINEに入力してください<br>
+        confirmMail.innerHTML = `From: school@inac-kobe.com<br>件名: サッカースクール仮申し込み完了のお知らせ<br>内容: このたびはサッカースクールへの仮申し込みありがとうございます。<br>娘さまには</strong>『再出発』</strong>とLINEでお伝えください<br>
         <br><strong>※実際には、サッカースクールにメールは送信されておりません。</strong>本メールは謎解き公演上の演出でございます。<br>謎解き公演とは関係なく、サッカースクールにご興味がございましたら、各サッカースクールの公式サイトより個別にご対応くださいませ。<br>--<br>本謎解き公演 制作担当者<br><small>受信日時: ${timestamp}</small>`;
         const heading = inbox.querySelector('h2');
 inbox.insertBefore(confirmMail, heading.nextSibling);
